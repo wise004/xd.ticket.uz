@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xalqalar Do'stligi Tickets - Bio Link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0054A6; /* main brand color */
+      --fb:#1877F2;
+      --ig1:#F58529; --ig2:#DD2A7B; --ig3:#8134AF; --ig4:#515BD4;
+      --yt:#FF0000;
+      --tg:#229ED9; /* Telegram */
+      --ink:#111827; /* dark for store badges */
+  --card-h: clamp(64px, 7.5vw, 78px); /* unified badge height */
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 15% -10%, #2c7bcc33 0%, transparent 60%),
+                  radial-gradient(900px 500px at 110% 10%, #4aa0ff22 0%, transparent 60%),
+                  linear-gradient(135deg, var(--brand) 0%, #2986d6 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* place content higher (top) */
+  padding-top: clamp(32px, 8vh, 120px); /* comfortable top offset */
+      animation: fadeIn 1.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .logo {
+      margin-top: 0;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .logo img {
+      max-width: 260px;
+      width: 80vw;
+      height: auto;
+      display: block;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 56px; /* much more vertical space between sections */
+      width: 100%;
+      max-width: 560px;
+      align-items: center;
+      padding: 0 32px 120px; /* add more bottom breathing room */
+      perspective: 900px;
+    }
+
+    /* Store badges (Google Play / App Store) */
+    .store-row{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+  column-gap: 18px; /* horizontal */
+  row-gap: 40px;    /* vertical */
+      width: 100%;
+      max-width: 500px; /* slightly narrower grid */
+      justify-items: center;
+    }
+  /* Ensure all cards share same height */
+  .badge{ height: var(--card-h); box-sizing: border-box; }
+  .store-row .badge{ height: var(--card-h); padding-left: 16px; padding-right: 16px; }
+  /* Make store badges white with dark text */
+  .store-row .badge{
+    background:#ffffff;
+    color:#111827;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .store-row .badge:hover{ box-shadow: 0 10px 28px rgba(0,0,0,.16); filter:none; }
+  .store-row .badge .top{ color:#6b7280; opacity:1; }
+  /* Brand backgrounds for PlayMarket (green) and App Store (blue) */
+  .store-row .badge.play{
+    background: linear-gradient(45deg, #00C853, #00BFA5);
+    color:#ffffff;
+    border-color: transparent;
+  }
+  .store-row .badge.play .top{ color:#e0f7ef; }
+  .store-row .badge.app{
+    background: linear-gradient(45deg, #0A84FF, #2F9BFF);
+    color:#ffffff;
+    border-color: transparent;
+  }
+  .store-row .badge.app .top{ color:#dbeafe; }
+  /* Apple icon should be white on blue */
+  .store-row .badge.app svg path{ fill:#ffffff !important; }
+    a.badge{
+      text-decoration: none;
+      background: linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
+      color:#fff;
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.18);
+      transition: transform .18s cubic-bezier(.4,2,.3,1), box-shadow .18s cubic-bezier(.4,2,.3,1), filter .18s ease;
+      position: relative; /* for particles */
+      overflow: visible;
+    }
+    a.badge:hover, a.badge:focus{ transform: scale(1.05); filter: brightness(1.05); }
+  a.badge svg{ width:28px; height:28px; flex: 0 0 28px; fill:currentColor; }
+    .badge .lines{ line-height: 1.05; }
+  .badge .top{ font-size: clamp(.58rem, 1.6vw, .72rem); opacity:.85; }
+  .badge .bottom{ font-weight:600; font-size: clamp(.95rem, 2.4vw, 1.12rem); }
+    .badge.play:hover{ box-shadow: 0 0 22px 2px rgba(66, 133, 244, .45); }
+    .badge.app:hover{ box-shadow: 0 0 22px 2px rgba(0, 122, 255, .45); }
+
+    /* Flip + particle animations */
+    .badge.spin{ animation: flip360 1100ms ease-in-out; transform-style: preserve-3d; }
+    .badge.spin > *{ animation: counter360 1100ms ease-in-out; backface-visibility: hidden; transform-style: preserve-3d; }
+    @keyframes flip360{
+      0%{ transform: rotateY(0) scale(1); }
+      50%{ transform: rotateY(180deg) scale(1.03); filter: brightness(1.06); }
+      100%{ transform: rotateY(360deg) scale(1); }
+    }
+    @keyframes counter360{
+      0%{ transform: rotateY(0); }
+      50%{ transform: rotateY(-180deg); }
+      100%{ transform: rotateY(-360deg); }
+    }
+    .particle{ position:absolute; left:50%; top:50%; width:8px; height:8px; border-radius:50%; pointer-events:none; opacity:0; filter: blur(.2px); }
+    .particle{ animation: particlePop 700ms ease-out forwards; }
+    @keyframes particlePop{
+      from{ opacity:1; transform: translate(-50%, -50%) translate(0,0) scale(1); }
+      to{ opacity:0; transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(.6); }
+    }
+
+    /* Social badges (same style as stores) */
+    .social-row{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+  column-gap:18px; /* horizontal */
+  row-gap:40px;    /* vertical */
+      width:100%;
+      max-width:500px; /* match store row */
+      justify-items: center;
+    }
+  a.badge.facebook{ background: linear-gradient(180deg, #1e6de6 0%, var(--fb) 100%); }
+    a.badge.facebook:hover{ box-shadow:0 0 22px 3px rgba(24,119,242,.45); }
+
+  a.badge.instagram{ background: linear-gradient(45deg, var(--ig4), var(--ig3) 35%, var(--ig2) 68%, var(--ig1)); }
+    a.badge.instagram:hover{ box-shadow:0 0 22px 3px rgba(221,42,123,.45); }
+
+  a.badge.youtube{ background: linear-gradient(180deg, #ff3b2f 0%, var(--yt) 100%); }
+    a.badge.youtube:hover{ box-shadow:0 0 22px 3px rgba(255,0,0,.45); }
+
+  a.badge.telegram{ background: linear-gradient(180deg, #49b3e6 0%, var(--tg) 100%); }
+    a.badge.telegram:hover{ box-shadow:0 0 22px 3px rgba(34,158,217,.45); }
+
+  a.badge.website{ background: linear-gradient(180deg, #1a66c8 0%, var(--brand) 100%); }
+    a.badge.website:hover{ box-shadow:0 0 22px 3px rgba(0,84,166,.45); }
+    .social-row .website{ grid-column: 1 / -1; justify-self: center; width: 92%; }
+
+  /* Mini logo inside website badge */
+  .mini-logo-wrap{ width:28px; height:28px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; flex:0 0 28px; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+  .mini-logo{ width:20px; height:auto; display:block; }
+    @media (max-width: 600px) {
+      .logo img {
+        max-width: 180px;
+      }
+  .links { max-width: 100%; gap: 48px; padding: 0 28px 132px; }
+  /* Keep two columns on mobile as requested */
+  .store-row{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .social-row{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  /* Tighter padding for small screens */
+  a.badge{ padding: 12px; border-radius: 14px; }
+  a.badge svg{ width:24px; height:24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="sayt logo/logo-CQxrZlf-.png" alt="Xalqalar Do'stligi Tickets Logo">
+  </div>
+  <div class="links">
+    <!-- Store badges -->
+    <div class="store-row">
+      <a class="badge play" href="https://play.google.com/store" target="_blank" rel="noopener">
+        <!-- Google Play triangle -->
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <path fill="#34A853" d="M325.3 218.4L88.3 10.5A32 32 0 0 1 98 0l230.1 133.6  -2.8 84.8z"/>
+          <path fill="#FBBC05" d="M330.2 359.3L98 512c-9.8-2.7-16.7-11.8-16.7-22V22c0-10.2 6.9-19.3 16.7-22l232.2 147.2v212.1z"/>
+          <path fill="#4285F4" d="M424.4 293.8 330.2 359.3V152.9l94.2 65.5c21.6 15 21.6 60.4 0 75.4z"/>
+          <path fill="#EA4335" d="M88.3 501.5c-6.7-4-11-11.3-11-19.5V30c0-8.2 4.3-15.5 11-19.5l237 207.9-237 282.1z"/>
+        </svg>
+        <span class="lines"><span class="top">GET IT ON</span><br><span class="bottom">Google Play</span></span>
+      </a>
+      <a class="badge app" href="https://www.apple.com/app-store/" target="_blank" rel="noopener">
+        <!-- Apple logo -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#ffffff" d="M19.665 13.997c-.021-2.13 1.747-3.146 1.825-3.192-1.001-1.463-2.557-1.664-3.106-1.687-1.322-.134-2.579.771-3.253.771-.674 0-1.722-.753-2.834-.733-1.457.021-2.803.847-3.555 2.154-1.522 2.637-.389 6.537 1.093 8.677.724 1.045 1.583 2.217 2.715 2.174 1.096-.043 1.511-.704 2.834-.704 1.323 0 1.693.704 2.834.683 1.172-.021 1.911-1.063 2.634-2.108.833-1.217 1.177-2.396 1.197-2.457-.026-.012-2.297-.88-2.319-3.489zm-3.665-6.497c.601-.728 1.007-1.742.897-2.76-.867.035-1.915.577-2.537 1.305-.557.646-1.049 1.682-.864 2.67.915.071 1.863-.465 2.504-1.215z"/>
+        </svg>
+        <span class="lines"><span class="top">Download on the</span><br><span class="bottom">App Store</span></span>
+      </a>
+    </div>
+
+    <!-- Social badges -->
+    <div class="social-row">
+      <a class="badge facebook" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <!-- Modern Facebook glyph -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="M13.5 22v-8h2.7l.4-3H13.5V8.6c0-.87.29-1.6 1.6-1.6H16.7V4.3c-.28-.04-1.24-.12-2.36-.12-2.33 0-3.92 1.42-3.92 4.02V11H8v3h2.42v8h3.08z"/></svg>
+        <span class="lines"><span class="top">Join us on</span><br><span class="bottom">Facebook</span></span>
+      </a>
+
+      <a class="badge instagram" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <!-- Modern Instagram glyph -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="M12 3.2c3.04 0 3.4.01 4.6.07 1 .05 1.55.22 1.91.37.48.19.82.42 1.18.78.36.36.59.7.78 1.18.15.36.32.91.37 1.91.06 1.2.07 1.56.07 4.6s-.01 3.4-.07 4.6c-.05 1-.22 1.55-.37 1.91-.19.48-.42.82-.78 1.18-.36.36-.7.59-1.18.78-.36.15-.91.32-1.91.37-1.2.06-1.56.07-4.6.07s-3.4-.01-4.6-.07c-1-.05-1.55-.22-1.91-.37a3.42 3.42 0 0 1-1.96-1.96c-.15-.36-.32-.91-.37-1.91C3.21 15.4 3.2 15.04 3.2 12s.01-3.4.07-4.6c.05-1 .22-1.55.37-1.91.19-.48.42-.82.78-1.18.36-.36.7-.59 1.18-.78.36-.15.91-.32 1.91-.37C8.6 3.21 8.96 3.2 12 3.2zm0 2.8A6 6 0 1 0 18 12a6 6 0 0 0-6-6zm7.2-.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/></svg>
+        <span class="lines"><span class="top">Join us on</span><br><span class="bottom">Instagram</span></span>
+      </a>
+
+      <a class="badge youtube" href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
+        <!-- Modern YouTube play glyph -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="M23.5 6.5a3.1 3.1 0 0 0-2.2-2.2C19 3.6 12 3.6 12 3.6s-7 0-9.3.7A3.1 3.1 0 0 0 .5 6.5C0 8.8 0 12 0 12s0 3.2.5 5.5c.3 1.1 1.2 2 2.2 2.2 2.3.7 9.3.7 9.3.7s7 0 9.3-.7a3.1 3.1 0 0 0 2.2-2.2c.5-2.3.5-5.5.5-5.5s0-3.2-.5-5.5zM9.8 15.6V8.4L16 12l-6.2 3.6z"/></svg>
+        <span class="lines"><span class="top">Join us on</span><br><span class="bottom">YouTube</span></span>
+      </a>
+
+      <a class="badge telegram" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+        <!-- Modern Telegram plane in circle -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.93 7.27l-2.13 10.07c-.16.7-.57.87-1.16.54l-3.22-2.38-1.55 1.5c-.17.17-.31.31-.64.31l.23-3.28 6.01-5.42c.26-.23-.06-.36-.4-.13l-7.43 4.67-3.2-1c-.7-.22-.71-.7.15-1.03l14.07-5.42c.65-.24 1.22.16 1.01 1.02z"/></svg>
+        <span class="lines"><span class="top">Join us on</span><br><span class="bottom">Telegram</span></span>
+      </a>
+
+      <a class="badge website" href="https://www.xalqlardostligi-ticket.uz/" target="_blank" rel="noopener" aria-label="Official Website">
+        <span class="mini-logo-wrap">
+          <img class="mini-logo" src="sayt logo/logo-CQxrZlf-.png" alt="Xalqlar do'stligi tickets logo">
+        </span>
+        <span class="lines"><span class="top">Visit our</span><br><span class="bottom">Xalqlar do'stligi tickets</span></span>
+      </a>
+    </div>
+    <script>
+      // Continuous sequential 360° flip with particle bursts for all badges
+      (function(){
+        const badges = Array.from(document.querySelectorAll('.links a.badge'));
+        if(!badges.length) return;
+
+        let i = 0;
+        function next(){
+          if(document.hidden){ setTimeout(next, 1000); return; }
+          const el = badges[i % badges.length];
+          el.classList.add('spin');
+          burst(el);
+          el.addEventListener('animationend', () => el.classList.remove('spin'), { once: true });
+          i++;
+          setTimeout(next, 1800); // stagger sequence
+        }
+
+        function burst(el){
+          const count = 28; // more particles
+          for(let k=0; k<count; k++){
+            const p = document.createElement('span');
+            p.className = 'particle';
+            const angle = (Math.PI*2*k)/count + (Math.random()*.6 - .3);
+            const dist = 28 + Math.random()*36;
+            const tx = Math.cos(angle)*dist; const ty = Math.sin(angle)*dist;
+            p.style.setProperty('--tx', tx+'px');
+            p.style.setProperty('--ty', ty+'px');
+            p.style.background = pickColor(el);
+            const size = 6 + Math.random()*8; // 6-14px
+            p.style.width = size+'px';
+            p.style.height = size+'px';
+            p.style.animationDuration = (550 + Math.random()*500)+'ms';
+            el.appendChild(p);
+            p.addEventListener('animationend', () => p.remove());
+          }
+        }
+
+        function pickColor(el){
+          const rand = a => a[Math.floor(Math.random()*a.length)];
+          if(el.classList.contains('play')) return rand(['#34A853','#FBBC05','#4285F4','#EA4335']);
+          if(el.classList.contains('app')) return rand(['#ffffff','#A3BFFA','#60A5FA']);
+          if(el.classList.contains('facebook')) return rand(['#ffffff','#BFD6FF']);
+          if(el.classList.contains('instagram')) return rand(['#F58529','#DD2A7B','#8134AF','#515BD4','#ffffff']);
+          if(el.classList.contains('youtube')) return rand(['#ffffff','#FF8A80','#FF5252']);
+          if(el.classList.contains('telegram')) return rand(['#ffffff','#CFEFFF','#7DD3FC']);
+          if(el.classList.contains('website')) return rand(['#ffffff','#DBEAFE','#93C5FD']);
+          return '#ffffff';
+        }
+
+        next();
+      })();
+    </script>
+  </div>
+</body>
+</html>
